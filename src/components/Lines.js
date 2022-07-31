@@ -20,7 +20,7 @@ const Lines = ({ lines, handleLineClick }) => {
         <>
           <HorizontalLine
             color={line.player}
-            borderright={line.column === lastVerticalRow}
+            showborderright={line.column === lastVerticalRow}
             onClick={() => handleLineClick(line)}
           ></HorizontalLine>
         </>
@@ -71,13 +71,19 @@ const VerticalLine = styled(Line)`
   width: ${WIDTH}px;
   height: ${HEIGHT}px;
   margin-right: ${HEIGHT}px;
-  ${(props) => props.color && `background: ${props.color};`}
+  ${(props) => props.color && `
+    background: ${props.color};
+    pointer-events: none;
+  `}
 `;
 
 const HorizontalLine = styled(Line)`
   height: ${WIDTH}px;
   width: ${HEIGHT}px;
-  ${(props) => props.color && `background: ${props.color};`};
-  ${(props) => props.borderright && `border-right: ${WIDTH}px solid black;`}
+  ${(props) => props.color && `
+    background: ${props.color};
+    pointer-events: none;
+  `}
+  ${(props) => props.showborderright && `border-right: ${WIDTH}px solid black;`}
   border-left: ${WIDTH}px solid black;
 `;
