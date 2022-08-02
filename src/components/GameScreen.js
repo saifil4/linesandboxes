@@ -11,15 +11,14 @@ const GameScreen = ({ closeScreen, hasGameStarted, startGame }) => {
           <h2>Rules</h2>
           <ol>
             <li>
-              Each turn, drag between two horizontally or vertically adjacent
-              dots to draw a line
+              Each turn, click on any of the horizontal or vertical line to select a line.
             </li>
             <li>
-              Drawing the 4th wall of a box wins it, earning you a point. When
+              Selecting the 4th line of a box wins it, earning you a point. When
               you close a box you must move again.
             </li>
             <li>
-              Lines are drawn until all squares are claimed. The player with the
+              Lines are selected until all squares are claimed. The player with the
               most claimed squares wins!
             </li>
           </ol>
