@@ -6,6 +6,8 @@ import Boxes from "./components/Boxes";
 import Lines from "./components/Lines";
 import { MATRIX } from "./constants";
 import GameScreen from "./components/GameScreen";
+import { GameLogo } from "./components/ui";
+import { ThemeButton } from "./components/ui";
 
 const totalRows = 9 * 2 - 1;
 const lastHorizontalRow = MATRIX - 1;
@@ -108,10 +110,16 @@ function App() {
   return (
     <GameContainer>
       {isScreenVisible ? (
-        <GameScreen hasGameStarted={hasGameStarted} closeScreen={closeScreen} startGame={startGame} />
+        <GameScreen
+          hasGameStarted={hasGameStarted}
+          closeScreen={closeScreen}
+          startGame={startGame}
+        />
       ) : (
         <>
-          <PlayerBar player={player} />
+          <GameLogo />
+          <ThemeButton onClick={openScreen} label="Pause" />
+          <PlayerBar boxes={boxes} player={player} />
           <Container>
             <Lines lines={lines} handleLineClick={handleLineClick} />
             <Boxes boxes={boxes} />

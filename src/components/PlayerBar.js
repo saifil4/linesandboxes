@@ -1,11 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 
-const PlayerBar = ({ player }) => {
+const PlayerBar = ({ player, boxes }) => {
   return (
     <Bar>
-      <Player color={player === "red" ? "red" : "grey"}>Red</Player>
-      <Player color={player === "blue" ? "blue" : "grey"}>Blue</Player>
+      <Player color={player === "red" ? "red" : "grey"}>
+        Red - {boxes.filter((box) => box.player === "red").length}
+      </Player>
+      <Player color={player === "blue" ? "blue" : "grey"}>
+        Blue - {boxes.filter((box) => box.player === "blue").length}
+      </Player>
     </Bar>
   );
 };

@@ -1,27 +1,37 @@
 import React from "react";
 import styled from "styled-components";
+import { ThemeButton, GameLogo } from "./ui";
 
 const GameScreen = ({ closeScreen, hasGameStarted, startGame }) => {
   return (
     <BackDrop>
       <Modal>
-        <Logo>Lines and Boxes</Logo>
-        <h2>Rules</h2>
-        <p>
-          Each turn, drag between two horizontally or vertically adjacent dots
-          to draw a line <br />
-          Drawing the 4th wall of a box wins it, earning you a point. When you
-          close a box you must move again. <br />
-          Lines are drawn until all squares are claimed. The player with the
-          most claimed squares wins!
-        </p>
+        <GameLogo />
+        <RulesContainer>
+          <h2>Rules</h2>
+          <ol>
+            <li>
+              Each turn, drag between two horizontally or vertically adjacent
+              dots to draw a line
+            </li>
+            <li>
+              Drawing the 4th wall of a box wins it, earning you a point. When
+              you close a box you must move again.
+            </li>
+            <li>
+              Lines are drawn until all squares are claimed. The player with the
+              most claimed squares wins!
+            </li>
+          </ol>
+        </RulesContainer>
+
         {hasGameStarted ? (
           <>
             <Button onClick={startGame}>Restart Game</Button>
             <Button onClick={closeScreen}>Close</Button>
           </>
         ) : (
-          <Button onClick={startGame}>Start Game</Button>
+          <ThemeButton label="Start Game" onClick={startGame} />
         )}
       </Modal>
     </BackDrop>
@@ -43,7 +53,7 @@ const BackDrop = styled.div`
 
 const Modal = styled.div`
   background: white;
-  height: 600px;
+  height: 400px;
   width: 500px;
   padding: 30px 20px;
   text-align: center;
@@ -52,8 +62,16 @@ const Modal = styled.div`
 const Logo = styled.h1`
   font-family: "Press Start 2P", cursive;
   font-size: 50px;
+  color: purple;
 `;
 
 const Button = styled.button`
   font-family: "Press Start 2P", cursive;
+`;
+
+const RulesContainer = styled.div`
+  text-align: left;
+  margin: 10px 0;
+  padding: 10px;
+  border-style: double;
 `;
