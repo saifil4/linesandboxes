@@ -1,3 +1,4 @@
+import "./App.css";
 import React, { useState, useEffect, useMemo } from 'react';
 import styled from 'styled-components';
 import Box from './components-new/Box';
@@ -9,24 +10,23 @@ const OPPOSITE_LINES = {
     'bottom': 'top'
 }
 
-const NewLogic = () => {
+function App2() {
 
     const players = ['#ff0000', '#0000ff', '#008000']
 
+    const config = {
+        rows: 8,
+        columns: 16,
+        lineThickness: 8,
+        boxSize: 60
+    }
+
     const [move, setMove] = useState(0);
+    const [boxes, setBoxes] = useState([])
 
     const currentPlayer = useMemo(() => {
         return players[move % players.length]
     }, [move])
-
-    const [boxes, setBoxes] = useState([])
-
-    const config = {
-        rows: 8,
-        columns: 8,
-        lineThickness: 10,
-        boxSize: 75
-    }
 
     const createGrid = () => {
         const boxList = []
@@ -96,6 +96,7 @@ const NewLogic = () => {
         }
     }
 
+
     return (
         <Grid config={config} >
             {
@@ -104,13 +105,15 @@ const NewLogic = () => {
                 ))
             }
         </Grid>
-    )
+    );
 }
 
-export default NewLogic;
+export default App2;
 
 const Grid = styled.div`
   display: grid;
   grid-template-rows: ${({ config }) => `repeat(${config.columns - 1}, ${config.boxSize}px) repeat(1, ${config.boxSize + config.lineThickness}px)`};
   grid-template-columns: ${({ config }) => `repeat(${config.columns - 1}, ${config.boxSize}px) repeat(1, ${config.boxSize + config.lineThickness}px)`}
 `;
+
+

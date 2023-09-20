@@ -1,16 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
+// import App from './App';
+import App2 from './App2';
+import Provider from './Provider';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 
-window.onbeforeunload = function() {
+window.onbeforeunload = function () {
   return true;
 };
 
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider>
+      <App2 />
+    </Provider>
   </React.StrictMode>
 );
