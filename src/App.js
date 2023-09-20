@@ -9,7 +9,9 @@ import GameScreen from "./components/GameScreen";
 import { GameLogo } from "./components/ui";
 import { ThemeButton } from "./components/ui";
 
-const totalRows = 9 * 2 - 1;
+import NewLogic from "./newLogic";
+
+const totalRows = 10 * 2 - 1;
 const lastHorizontalRow = MATRIX - 1;
 const horizontalColumnCount = MATRIX - 1;
 const verticalColumnCount = MATRIX;
@@ -108,44 +110,45 @@ function App() {
   const isHorizontal = (index) => index % 2 === 0;
 
   return (
-    <GameContainer>
-      {isScreenVisible ? (
-        <GameScreen
-          hasGameStarted={hasGameStarted}
-          closeScreen={closeScreen}
-          startGame={startGame}
-        />
-      ) : (
-        <>
-          <GameLogo />
-          <ThemeButton onClick={openScreen} label="Pause" />
-          <PlayerBar boxes={boxes} player={player} />
-          <Container>
-            <Lines lines={lines} handleLineClick={handleLineClick} />
-            <Boxes boxes={boxes} />
-          </Container>
-        </>
-      )}
-    </GameContainer>
+    <NewLogic />
+    // <GameContainer>
+    //   {isScreenVisible ? (
+    //     <GameScreen
+    //       hasGameStarted={hasGameStarted}
+    //       closeScreen={closeScreen}
+    //       startGame={startGame}
+    //     />
+    //   ) : (
+    //     <>
+    //       <GameLogo />
+    //       <ThemeButton onClick={openScreen} label="Pause" />
+    //       <PlayerBar boxes={boxes} player={player} />
+    //       <Container>
+    //         <Lines lines={lines} handleLineClick={handleLineClick} />
+    //         <Boxes boxes={boxes} />
+    //       </Container>
+    //     </>
+    //   )}
+    // </GameContainer>
   );
 }
 
 export default App;
 
-const Container = styled.div`
-  position: relative;
-  display: flex;
-  width: ${containerWidth}px;
-  background: #f3f4f5;
-  height: 100%;
-`;
+// const Container = styled.div`
+//   position: relative;
+//   display: flex;
+//   width: ${containerWidth}px;
+//   background: #f3f4f5;
+//   height: 100%;
+// `;
 
-const GameContainer = styled.div`
-  background: #f4f5f7;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  height: 100vh;
-  position: relative;
-`;
+// const GameContainer = styled.div`
+//   background: #f4f5f7;
+//   display: flex;
+//   justify-content: center;
+//   flex-direction: column;
+//   align-items: center;
+//   height: 100vh;
+//   position: relative;
+// `;
