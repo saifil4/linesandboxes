@@ -2,6 +2,8 @@ import "./App.css";
 import React, { useState, useEffect, useMemo } from 'react';
 import styled from 'styled-components';
 import Box from './components-new/Box';
+import TopBar from "./layouts/TopBar";
+import GameCanvas from "./layouts/GameCanvas";
 
 const OPPOSITE_LINES = {
     'left': 'right',
@@ -12,7 +14,20 @@ const OPPOSITE_LINES = {
 
 function App2() {
 
-    const players = ['#ff0000', '#0000ff', '#008000']
+    const players = [
+        {
+            name: 'player 1',
+            color: '#ff0000'
+        },
+        {
+            name: 'player 2',
+            color: '#0000ff'
+        },
+        {
+            name: 'player 3',
+            color: '#008000'
+        }
+    ]
 
     const config = {
         rows: 8,
@@ -35,18 +50,10 @@ function App2() {
                 boxList.push({
                     x: j,
                     y: i,
-                    left: {
-                        player: null
-                    },
-                    right: {
-                        player: null
-                    },
-                    top: {
-                        player: null
-                    },
-                    bottom: {
-                        player: null
-                    }
+                    left: { player: null },
+                    right: { player: null },
+                    top: { player: null },
+                    bottom: { player: null }
                 })
             }
         }
@@ -57,8 +64,11 @@ function App2() {
         createGrid();
     }, [])
 
+
     const selectLine = (selectedBox, line) => {
-        console.log(line)
+        if (selectedBox[line].player) {
+            return null;
+        }
         setMove(move + 1)
         const adjacentBox = getAdjacentBox(selectedBox, line);
         const currentDate = new Date();
@@ -98,13 +108,18 @@ function App2() {
 
 
     return (
-        <Grid config={config} >
-            {
-                boxes.map(box => (
-                    <Box box={box} config={config} selectLine={selectLine} />
-                ))
-            }
-        </Grid>
+        <>
+            <TopBar players={players} currentPlayer={currentPlayer} />
+            <GameCanvas>
+                <Grid config={config} >
+                    {
+                        boxes.map(box => (
+                            <Box box={box} config={config} selectLine={selectLine} />
+                        ))
+                    }
+                </Grid>
+            </GameCanvas>
+        </>
     );
 }
 

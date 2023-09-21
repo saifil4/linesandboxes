@@ -19,7 +19,7 @@ const Box = ({ box, config, selectLine }) => {
         const lines = [box.top, box.left, box.right, box.bottom];
         if (lines.every(line => line.player !== null)) {
             lines.sort((a, b) => b.timestamp - a.timestamp);
-            return lines[0].player;
+            return lines[0].player.color;
         }
         return null;
     }, [box])
@@ -28,27 +28,27 @@ const Box = ({ box, config, selectLine }) => {
         <BoxShape className='.box' bg={boxColor}>
             <TopLine
                 data-line="top"
-                bg={box['top'].player}
+                bg={box['top'].player?.color}
                 width={getLength(x === lastColumn)}
                 height={lineThickness}
                 onClick={handleLineClick}
             />
             <LeftLine
                 data-line="left"
-                bg={box['left'].player}
+                bg={box['left'].player?.color}
                 width={lineThickness}
                 height={getLength(y === lastRow)}
                 onClick={handleLineClick} />
             <BottomLine
                 data-line="bottom"
-                bg={box['bottom'].player}
+                bg={box['bottom'].player?.color}
                 display={getDisplay(y === lastRow)}
                 width={getLength(y === lastRow)}
                 height={lineThickness}
                 onClick={handleLineClick} />
             <RightLine
                 data-line="right"
-                bg={box['right'].player}
+                bg={box['right'].player?.color}
                 display={getDisplay(x === lastColumn)}
                 width={lineThickness}
                 height={getLength(x === lastColumn)}
@@ -67,7 +67,7 @@ const BoxShape = styled.div`
 
 const Line = styled.div`
   position: absolute;
-  background: ${props => props.bg !== null ? props.bg : 'grey'};
+  background: ${props => props.bg ? props.bg : 'grey'};
   opacity: 0.5;
   cursor: pointer;
   &: hover {
