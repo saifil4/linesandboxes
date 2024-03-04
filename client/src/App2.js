@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Box from './components-new/Box';
 import TopBar from "./layouts/TopBar";
 import GameCanvas from "./layouts/GameCanvas";
+import SocketMessage from "./components-new/SocketMessage";
 
 const OPPOSITE_LINES = {
     'left': 'right',
@@ -109,8 +110,9 @@ function App2() {
 
     return (
         <>
-            <TopBar players={players} currentPlayer={currentPlayer} />
-            <GameCanvas>
+            <SocketMessage />
+            {/* <TopBar players={players} currentPlayer={currentPlayer} /> */}
+            {/* <GameCanvas>
                 <Grid config={config} >
                     {
                         boxes.map(box => (
@@ -118,7 +120,7 @@ function App2() {
                         ))
                     }
                 </Grid>
-            </GameCanvas>
+            </GameCanvas> */}
         </>
     );
 }
